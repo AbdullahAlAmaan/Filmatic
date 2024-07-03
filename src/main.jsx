@@ -3,16 +3,19 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
 import App from './App.jsx'
 import './index.css'
-import theme from '../theme.js'
+import theme from '../theme.js'; 
+
 import Movies from './Pages/Movies/Movies.jsx'
 import Shows from './Pages/Shows/Shows.jsx'
 import Home from './Pages/Home.jsx'
+import Search from './Pages/Search/Search.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     children: [
+      { index: true, element: <Home /> }, // This line makes '/home' content render at '/'
       {
         path: '/home',
         element: <Home />,
@@ -33,7 +36,7 @@ const router = createBrowserRouter([
   },
 ])
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ColorModeScript initialColorMode={theme.config.initialColorMode} />
     <ChakraProvider theme={theme}>
