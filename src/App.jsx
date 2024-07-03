@@ -6,10 +6,9 @@ import React from 'react'
 
 function App() {
   return (
-    
-    <Layout>
-     <Outlet/>
-    </Layout>
+  <Layout>
+    <Outlet/>
+  </Layout>
     
   )
 }
