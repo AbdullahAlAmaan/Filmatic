@@ -1,8 +1,9 @@
+import { Flex } from "@chakra-ui/react"
 
 
 export const percentageFormatter= (rating)=> {
   return (
-    (rating*10)?.toFixed(0)
+    (rating)?.toFixed(0)
   )
 }
 export const resolveRatingColor= (rating)=>{
@@ -16,4 +17,9 @@ export const resolveRatingColor= (rating)=>{
     return "red.400"
   }
 
+}
+export const timeConverter = (minute) => {
+  const hours = Math.floor(minute / 60);
+  const minutes = minute % 60;
+  return `${hours}h ${minutes}m`;
 }

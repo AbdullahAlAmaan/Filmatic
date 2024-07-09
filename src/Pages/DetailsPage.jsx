@@ -21,9 +21,10 @@ import {
   imagePath,
   imagePathOriginal,
 } from "../Services/api";
-import { CalendarIcon, CheckCircleIcon, SmallAddIcon } from "@chakra-ui/icons";
+import { CalendarIcon, CheckCircleIcon, SmallAddIcon, TimeIcon } from "@chakra-ui/icons";
 import { percentageFormatter, resolveRatingColor } from "../utils/helpers";
 import VideoComponent from "../Components/VideoComponent";
+import { timeConverter } from "../utils/helpers";
 
 const DetailsPage = () => {
   const { type, id } = useParams();
@@ -90,39 +91,50 @@ const DetailsPage = () => {
               src={`${imagePath}/${details.poster_path}`}
             />
             <Box>
-              <Heading fontSize="3xl">
+              <Heading fontSize="3xl" color={"gray.200"}>
                 {title}{" "}
-                <Text as="span" fontWeight="normal" color="gray.400">
+                <Text as="span" fontWeight="normal" color="gray.200">
                   {new Date(releaseDate).getFullYear()}
                 </Text>
               </Heading>
               <Flex alignItems="center" gap="4" mt="1" mb="5">
-                <CalendarIcon mr="2" color="gray.400" />
-                <Text fontSize="sm">
+                <CalendarIcon mr="2" color="gray.200" />
+                <Text fontSize="sm" color={"gray.200"}>
                   {new Date(releaseDate).toLocaleDateString("en-US")}
                 </Text>
               </Flex>
-              <Flex alignItems={"center"} gap={"4"}>
+              {type==="movie" && (
+                <>
+                <Box>*</Box>
+                <Flex alignItems={"center"}>
+  <TimeIcon mr={"2"} color={"gray.200"}/>
+  <Text fontSize={"small"} color={"gray.200"}>
+    {details?.runtime ? timeConverter(details.runtime) : 'N/A'}
+  </Text>
+</Flex>
 
-              
+                </>
+              )}
+
+              <Flex alignItems={"center"} gap={"4"}>
               <CircularProgress
                 value={percentageFormatter(details.vote_average * 10)}
                 size="70px"
                 color={resolveRatingColor(details.vote_average)}
                 thickness="6px"
               >
-                <CircularProgressLabel fontSize="lg">
-                  {percentageFormatter(details.vote_average * 10)}%
+                <CircularProgressLabel fontSize="sm" color={"gray.200"}>
+                  {percentageFormatter(details?.vote_average * 10)} %
                 </CircularProgressLabel>
               </CircularProgress>
-              <Text fontStyle="italic" my="5" color="gray.400">
+              <Text fontStyle="italic" my="5" color="gray.200">
                 {details.tagline}
               </Text>
-              <Heading fontSize="xl" mb="3" fontWeight="bold">
+              <Heading fontSize="xl" mb="3" fontWeight="bold" color={"gray.200"}>
                 Overview
               </Heading>
-              <Text fontSize="md" mb="3">
-                {details.overview}
+              <Text fontSize="md" mb="3" color={"gray.200"}>
+                {details.overview} 
               </Text></Flex>
               <Flex mt="2" gap="2">
                 {details.genres?.map((genre) => (
@@ -148,6 +160,10 @@ const DetailsPage = () => {
                 <Image
                   src={`${imagePath}/${actor.profile_path}`}
                   alt={actor.name}
+                  w={"100%"}
+                  height={"225px"}
+                  objectFit={"cover"}
+                  borderRadius={"small"}
                 />
                 <Text fontSize="small" mt="2">
                   {actor.name}
@@ -271,12 +287,12 @@ export default DetailsPage;
 //             <Box>
 //               <Heading fontSize="3xl">
 //                 {title}{" "}
-//                 <Text as="span" fontWeight="normal" color="gray.400">
+//                 <Text as="span" fontWeight="normal" color="gray.200">
 //                   {new Date(releaseDate).getFullYear()}
 //                 </Text>
 //               </Heading>
 //               <Flex alignItems="center" gap="4" mt="1" mb="5">
-//                 <CalendarIcon mr="2" color="gray.400" />
+//                 <CalendarIcon mr="2" color="gray.200" />
 //                 <Text fontSize="sm">
 //                   {new Date(releaseDate).toLocaleDateString("en-US")}
 //                 </Text>
@@ -291,7 +307,7 @@ export default DetailsPage;
 //                   {percentageFormatter(details.vote_average * 10)}%
 //                 </CircularProgressLabel>
 //               </CircularProgress>
-//               <Text fontStyle="italic" my="5" color="gray.400">
+//               <Text fontStyle="italic" my="5" color="gray.200">
 //                 {details.tagline}
 //               </Text>
 //               <Heading fontSize="xl" mb="3" fontWeight="bold">
