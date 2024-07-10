@@ -1,4 +1,4 @@
-// Home.jsx
+
 import React, { useEffect, useState } from "react";
 import { Container, Flex, Grid, Heading, Skeleton,Box } from "@chakra-ui/react";
 import { fetchTrending } from "../Services/api";
@@ -41,8 +41,9 @@ const Home = () => {
             Today
           </Box>
           <Box color="white" as="button" px="3px" py="1" borderRadius="20px"
-            bg={timeWindow === "week" ? "gray.700" : ""}
-            onClick={() => setTimeWindow("week")}>
+            bg={timeWindow === "week" ? "gray.600" : ""}
+            onClick={() => setTimeWindow("week")}
+            >
             This Week
           </Box>
         </Flex>

@@ -1,22 +1,22 @@
 import { extendTheme } from "@chakra-ui/react";
-import { mode } from "@chakra-ui/theme-tools";
 
-const config = {
-  initialColorMode: "light",
-  useSystemColorMode: false,
-};
-
-const styles = {
-  global: (props) => ({
-    body: {
-      bg: mode(
-        props.theme.semanticTokens.colors["chakra-body-bg"]._dark,
-        "blackAlpha.900"
-      )(props),
+const theme = extendTheme({
+  styles: {
+    global: {
+      
+      body: {
+        bg: "black", 
+        color: "white", 
+      },
+      a: {
+        color: "white", 
+        _hover: {
+          textDecoration: "underline",
+          color:"gray.400"
+        },
+      },
     },
-  }),
-};
-
-const theme = extendTheme({ config, styles });
+  },
+});
 
 export default theme;

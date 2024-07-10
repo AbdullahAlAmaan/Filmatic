@@ -7,7 +7,7 @@ export const AuthProvider=({children})=>{
   const [isLoading,setIsLoading]=useState(true);
    function signInWithGoogle(){
     const provider = new GoogleAuthProvider();
-    return signInWithPopup(provider)
+    return signInWithPopup(auth,provider)
    }
    function logout(){
     return signOut(auth);

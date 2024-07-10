@@ -1,4 +1,4 @@
-import { Container, Flex, Grid, Heading, Skeleton,Select } from "@chakra-ui/react";
+import { Container, Flex, Grid, Heading, Skeleton,Select,useColorModeValue } from "@chakra-ui/react";
   import React from "react";
   import {  fetchShows } from "../../Services/api";
   import CardComponent from "../../Components/CardComponent";
@@ -26,37 +26,44 @@ import PaginationComponent from "../../Components/PaginationComponent";
         })
         .finally(() => setIsLoading(false));
     }, [activePage]);
-
+    const selectBgColor = useColorModeValue("gray.900", "gray.900"); 
+    const selectTextColor = useColorModeValue("white", "white"); 
+    const optionBgColor = useColorModeValue("gray.200", "gray.200"); 
+  
     return (
-      <Container maxW={"container.xl"}>
-        <Flex alignContent={"baseline"} gap={"4"} my={"10"}>
+      <Container maxW="container.xl">
+        <Flex align="center" gap="4" my="10">
           <Heading
-          as={"h2"}
-          fontFamily={"mono"}
-          fontSize={"md"}
-          textTransform={"uppercase"}
-          fontWeight={"bold"}
-          color={"white"}
-          mb={"5"}
-        >
-          {" "}
-          Discover TV Shows{" "}
-        </Heading>
-        <Select
-          w={"130px"}
-          onChange={(e) => {
-            setActivePage(1);
-            setSortBy(e.target.value);
-          }}
-          color={"white"}
-        >
-          <option value="popularity.desc" color={"black"}>
-            Popular
-          </option>
-          <option value="vote_average.desc&vote_count.gte=1000" color={"black"}>
-            Top Rated
-          </option>
-        </Select>
+            as="h2"
+            fontFamily="mono"
+            fontSize="lg"
+            textTransform="uppercase"
+            fontWeight="bold"
+            color="white"
+          >
+            Discover TV Shows
+          </Heading>
+          <Select
+            w="200px"
+            placeholder="Sort by"
+            onChange={(e) => {
+              setActivePage(1);
+              setSortBy(e.target.value);
+            }}
+            color={selectTextColor}
+            bg={selectBgColor}
+            borderColor="gray.600"
+            _hover={{ bg: "gray.800" }} 
+            _focus={{ borderColor: "teal.500", boxShadow: "0 0 0 1px teal.500" }} 
+            _active={{ bg: selectBgColor }} 
+          >
+            <option style={{ backgroundColor: optionBgColor, color: 'black' }} value="popularity.desc">
+              Popular
+            </option>
+            <option style={{ backgroundColor: optionBgColor, color: 'black' }} value="vote_average.desc&vote_count.gte=1000">
+              Top Rated
+            </option>
+          </Select>
         </Flex>
         <Grid
             templateColumns={{
