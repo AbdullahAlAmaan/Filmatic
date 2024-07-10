@@ -46,7 +46,7 @@ const Navbar = () => {
               letterSpacing={"widest"}
               fontFamily={"mono"}
             >
-              MOVIEPEDIA
+              FILMATIC
             </Box>
           </Link>
 
