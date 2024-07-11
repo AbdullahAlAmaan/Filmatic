@@ -171,8 +171,8 @@ const DetailsPage = () => {
             <Box>
               <Heading fontSize={"3xl"}>
                 {title}{" "}
-                <Text as="span" fontWeight={"normal"} color={"gray.400"}>
-                  {new Date(releaseDate).getFullYear()}
+                <Text as="span" fontWeight={"bold"} color={"gray.500"} fontFamily={"monospace"}>
+                  ({new Date(releaseDate).getFullYear()})
                 </Text>
               </Heading>
 
@@ -229,6 +229,7 @@ const DetailsPage = () => {
                     leftIcon={<SmallAddIcon />}
                     variant={"outline"}
                     onClick={handleSaveToWatchlist}
+                    color={"gray.400"}
                   >
                     Add to watchlist
                   </Button>
